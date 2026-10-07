@@ -122,7 +122,7 @@ const questions = [
 
 {category:"GELD",text:"Wer würde eher eine Million Euro innerhalb eines Jahres ausgeben?"},
 {category:"GELD",text:"Wer würde eher einen Ferrari kaufen?"},
-{category:"GELD",text:"Wer würde eher sein gesamtes Geld in eine verrückte Geschäftsidee investieren?"}
+{category:"GELD",text:"Wer würde eher sein gesamtes Geld in eine verrückte Geschäftsidee investieren?"},
 {category:"GELD",text:"Wer würde eher sein ganzes Geld für ein Luxusauto ausgeben?"},
 {category:"GELD",text:"Wer würde eher im Lotto gewinnen?"},
 {category:"GELD",text:"Wer würde eher im Lotto alles wieder verlieren?"},
