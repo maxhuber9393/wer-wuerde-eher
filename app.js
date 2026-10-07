@@ -2002,6 +2002,7 @@ const SUPABASE_URL = "https://idoauitbdgkxryrysvjl.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_z7XHoGMlijkvOaf9MarCRw_Xe73PCC0";
 
 const MAX_PLAYERS = 5;
+const MIN_PLAYERS = 2;
 
 let supabaseClient = null;
 let game = null;
@@ -3215,7 +3216,7 @@ async function refreshRealtime() {
             game.status === "playing" &&
             me.is_host &&
             votes.length >= players.length &&
-            players.length === MAX_PLAYERS
+            players.length >= MIN_PLAYERS
         ) {
 
             await setResult();
@@ -3394,18 +3395,16 @@ function renderLobby() {
                             class="primary-button"
                             type="button"
                             ${
-                                players.length <
-                                MAX_PLAYERS
+                                players.length < MIN_PLAYERS
                                     ? "disabled"
                                     : ""
                             }
                         >
 
                             ${
-                                players.length <
-                                MAX_PLAYERS
+                                players.length < MIN_PLAYERS
 
-                                    ? "WARTE AUF SPIELER"
+                                    ? "MINDESTENS 2 SPIELER"
 
                                     : "SPIEL STARTEN →"
                             }
@@ -3432,8 +3431,7 @@ function renderLobby() {
 
     if (
         me.is_host &&
-        players.length ===
-        MAX_PLAYERS
+        players.length >= MIN_PLAYERS
     ) {
 
         $("startMultiplayerButton").onclick =
@@ -3450,8 +3448,7 @@ async function startMultiplayerGame() {
 
     if (
         !me.is_host ||
-        players.length !==
-        MAX_PLAYERS
+        players.length < MIN_PLAYERS
     ) {
 
         return;
@@ -3804,8 +3801,7 @@ async function castVote(playerId) {
 
         if (
             me.is_host &&
-            votes.length ===
-            MAX_PLAYERS
+            votes.length >= players.length
         ) {
 
             await setResult();
@@ -3849,8 +3845,7 @@ async function setResult() {
 
 
     if (
-        votes.length <
-        MAX_PLAYERS
+        votes.length < players.length
     ) {
 
         return;
