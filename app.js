@@ -2103,7 +2103,7 @@ function showScreen(screen) {
 
 function setStartContent(html) {
 
-    const screen = $("startScreen");
+    const screen = $("nameScreen");
 
     screen.innerHTML = html;
 
