@@ -71,17 +71,14 @@
         const active = document.querySelector(".screen.active");
         if (!active) return;
 
-        if (
-            !localStorage.getItem("ww_game_id") ||
-            !localStorage.getItem("ww_player_id")
-        ) return;
+        if (active.id === "nameScreen") return;
 
-        if (active.querySelector(".leave-session-link")) return;
+        if (active.querySelector(".home-link")) return;
 
         const link = document.createElement("button");
         link.type = "button";
-        link.className = "leave-session-link";
-        link.textContent = "Sitzung verlassen";
+        link.className = "home-link";
+        link.textContent = "← STARTSEITE";
         link.onclick = leaveSession;
 
         active.appendChild(link);
@@ -90,15 +87,20 @@
     window.addEventListener("DOMContentLoaded", () => {
         const style = document.createElement("style");
         style.textContent = `
-            .leave-session-link {
+            .home-link {
                 display: block;
                 margin: 16px auto 0;
-                padding: 3px 6px;
+                padding: 4px 8px;
                 border: 0;
                 background: transparent;
-                color: rgba(255,255,255,.32);
-                font-size: 11px;
+                color: rgba(255,255,255,.34);
+                font-size: 10px;
+                letter-spacing: .08em;
                 cursor: pointer;
+            }
+
+            .home-link:hover {
+                color: rgba(255,255,255,.65);
             }
 
             .leave-session-link:hover {
