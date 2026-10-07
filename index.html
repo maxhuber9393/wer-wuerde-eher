@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wer würde eher?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+<header class="topbar"><div class="logo">WER WÜRDE EHER?</div><div class="round">Runde <span id="roundNumber">1</span></div></header>
+
+<section id="nameScreen" class="screen active">
+<div class="hero"><div class="hero-icon">♨</div><p class="eyebrow">DER ABEND BEGINNT</p><h1>Wer würde<br><span>eher?</span></h1><p class="intro">Gib deinen eigenen Namen ein.<br>Jedes Handy ist ein eigener Spieler.</p></div>
+<div class="players-box"><h2>Wie heißt du?</h2><input id="nameInput" class="big-input" type="text" maxlength="30" placeholder="Dein Name" autocomplete="name"><button id="continueNameButton" class="primary-button" type="button">WEITER <span>→</span></button></div>
+</section>
+
+<section id="choiceScreen" class="screen">
+<div class="simple-card"><p class="eyebrow">SPIEL AUSWÄHLEN</p><h2>Was möchtest du tun?</h2><button id="createGameButton" class="primary-button" type="button">SPIEL ERSTELLEN <span>→</span></button><button id="joinGameButton" class="secondary-button" type="button">SPIEL BEITRETEN</button></div>
+</section>
+
+<section id="joinScreen" class="screen">
+<div class="simple-card"><p class="eyebrow">SPIEL BEITRETEN</p><h2>Spielcode eingeben</h2><input id="joinCodeInput" class="big-input code-input" type="text" maxlength="6" placeholder="ABC123" autocomplete="off"><button id="confirmJoinButton" class="primary-button" type="button">BEITRETEN <span>→</span></button><button id="backToChoiceButton" class="text-button" type="button">← ZURÜCK</button></div>
+</section>
+
+<section id="lobbyScreen" class="screen">
+<div class="simple-card lobby-card"><p class="eyebrow">SPIEL-LOBBY</p><p class="lobby-title">DEIN SPIELCODE</p><div id="lobbyCode" class="game-code">------</div><p id="lobbyStatus" class="lobby-status">0 von 5 Spielern im Raum</p><div id="lobbyPlayers" class="lobby-players"></div><button id="startGameButton" class="primary-button" type="button">SPIEL STARTEN <span>→</span></button><p id="waitingHost" class="waiting-text">Warte auf den Host...</p></div>
+</section>
+
+<section id="gameScreen" class="screen">
+<div class="category-label" id="categoryLabel">GEMISCHT</div><div class="question-card"><div class="quote">“</div><h2 id="questionText"></h2><div class="question-line"></div><p>Wähle auf deinem Handy eine Person.</p></div><div id="playerButtons" class="player-buttons"></div><p id="voteStatus" class="vote-status">0 von 5 haben abgestimmt.</p></section>
+
+<section id="resultScreen" class="screen">
+<div class="result-label">DIE ENTSCHEIDUNG IST GEFALLEN</div><div class="winner-card"><div class="winner-crown">♛</div><p>AM MEISTEN GENANNT</p><h2 id="winnerName">–</h2><div class="winner-votes"><span id="winnerVotes">0</span> Stimmen</div></div><div id="voteSummary" class="vote-summary"></div><button id="nextButton" class="primary-button" type="button">NÄCHSTE FRAGE <span>→</span></button><p id="waitingNext" class="waiting-text">Warte auf den Host...</p></section>
+
+<footer id="creatorCredit" class="creator-credit">Spiel erstellt von Maximilian Huber</footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>
