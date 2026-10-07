@@ -3482,17 +3482,16 @@ function renderLobby() {
                             WARTEN AUF DEN HOST...
                         </div>
 
-                    
+                    `
+            }
+
             <button
                 id="leaveLobbyButton"
                 class="leave-session-link"
                 type="button"
             >
-                Sitzung verlassen
+                SITZUNG VERLASSEN
             </button>
-
-                    `
-            }
 
         </div>
 
