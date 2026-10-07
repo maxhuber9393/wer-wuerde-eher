@@ -3342,6 +3342,8 @@ async function leaveLobby() {
 
 function renderLobby() {
 
+    ensureLobbyLeaveStyle();
+
     setRound("–");
 
 
@@ -3485,14 +3487,16 @@ function renderLobby() {
                     `
             }
 
+
+
+
             <button
                 id="leaveLobbyButton"
-                class="leave-session-link"
+                class="leave-session-link lobby-leave-button"
                 type="button"
             >
                 SITZUNG VERLASSEN
             </button>
-
         </div>
 
     `);
@@ -3505,6 +3509,12 @@ function renderLobby() {
 
         $("startMultiplayerButton").onclick =
             startMultiplayerGame;
+    }
+
+    const leaveLobbyButton = $("leaveLobbyButton");
+
+    if (leaveLobbyButton) {
+        leaveLobbyButton.onclick = leaveLobby;
     }
 
     const leaveLobbyButton =
