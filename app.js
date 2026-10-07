@@ -3477,14 +3477,6 @@ function renderLobby() {
     if (leaveLobbyButton) {
         leaveLobbyButton.onclick = leaveLobby;
     }
-
-    const leaveLobbyButton =
-        $("leaveLobbyButton");
-
-    if (leaveLobbyButton) {
-        leaveLobbyButton.onclick =
-            leaveLobby;
-    }
 }
 
 
