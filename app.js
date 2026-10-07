@@ -3446,48 +3446,14 @@ function renderLobby() {
                 ${MAX_PLAYERS}
                 Spieler
             </div>
-
-
-            ${
-                me.is_host
-
-                    ? `
-
-                        <button
-                            id="startMultiplayerButton"
-                            class="primary-button"
-                            type="button"
-                            ${
-                                players.length < MIN_PLAYERS
-                                    ? "disabled"
-                                    : ""
-                            }
-                        >
-
-                            ${
-                                players.length < MIN_PLAYERS
-
-                                    ? "MINDESTENS 2 SPIELER"
-
-                                    : "SPIEL STARTEN →"
-                            }
-
-                        </button>
-
-                    `
-
-                    : `
-
-                        <div
-                            class="waiting-message"
-                        >
-                            WARTEN AUF DEN HOST...
-                        </div>
-
-                    `
-            }
-
-
+            <button
+                id="startMultiplayerButton"
+                class="primary-button"
+                type="button"
+                ${players.length < MIN_PLAYERS ? "disabled" : ""}
+            >
+                ${players.length < MIN_PLAYERS ? "MINDESTENS 2 SPIELER" : "SPIEL STARTEN →"}
+            </button>
 
 
             <button
@@ -3500,15 +3466,10 @@ function renderLobby() {
         </div>
 
     `);
+    const startButton = $("startMultiplayerButton");
 
-
-    if (
-        me.is_host &&
-        players.length >= MIN_PLAYERS
-    ) {
-
-        $("startMultiplayerButton").onclick =
-            startMultiplayerGame;
+    if (startButton && players.length >= MIN_PLAYERS) {
+        startButton.onclick = startMultiplayerGame;
     }
 
     const leaveLobbyButton = $("leaveLobbyButton");
@@ -3533,10 +3494,7 @@ function renderLobby() {
 
 async function startMultiplayerGame() {
 
-    if (
-        !me.is_host ||
-        players.length < MIN_PLAYERS
-    ) {
+    if (players.length < MIN_PLAYERS) {
 
         return;
     }
