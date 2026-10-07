@@ -3342,8 +3342,6 @@ async function leaveLobby() {
 
 function renderLobby() {
 
-    ensureLobbyLeaveStyle();
-
     setRound("–");
 
 
