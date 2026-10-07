@@ -3279,6 +3279,67 @@ function renderCurrentState() {
 // LOBBY
 // ============================================================
 
+async function leaveLobby() {
+
+    if (!game || !me || !supabaseClient) {
+        return;
+    }
+
+    if (!confirm("Sitzung wirklich verlassen?")) {
+        return;
+    }
+
+    try {
+
+        if (me.is_host) {
+
+            const nextHost =
+                players
+                    .filter(player => player.id !== me.id)
+                    .sort(
+                        (a, b) =>
+                            new Date(a.created_at) -
+                            new Date(b.created_at)
+                    )[0];
+
+            if (nextHost) {
+                await supabaseClient
+                    .from("players")
+                    .update({ is_host: true })
+                    .eq("id", nextHost.id)
+                    .eq("game_id", game.id);
+            }
+        }
+
+        await supabaseClient
+            .from("players")
+            .delete()
+            .eq("id", me.id)
+            .eq("game_id", game.id);
+
+        localStorage.removeItem(GAME_KEY);
+        localStorage.removeItem(PLAYER_KEY);
+        localStorage.removeItem(NAME_KEY);
+
+        if (realtimeChannel) {
+            await supabaseClient.removeChannel(realtimeChannel);
+            realtimeChannel = null;
+        }
+
+        game = null;
+        me = null;
+        players = [];
+        votes = [];
+
+        renderNameScreen();
+
+    } catch (error) {
+        console.error(error);
+        alert("Die Sitzung konnte nicht verlassen werden.");
+    }
+}
+
+
 function renderLobby() {
 
     setRound("–");
@@ -3421,6 +3482,15 @@ function renderLobby() {
                             WARTEN AUF DEN HOST...
                         </div>
 
+                    
+            <button
+                id="leaveLobbyButton"
+                class="leave-session-link"
+                type="button"
+            >
+                Sitzung verlassen
+            </button>
+
                     `
             }
 
@@ -3436,6 +3506,14 @@ function renderLobby() {
 
         $("startMultiplayerButton").onclick =
             startMultiplayerGame;
+    }
+
+    const leaveLobbyButton =
+        $("leaveLobbyButton");
+
+    if (leaveLobbyButton) {
+        leaveLobbyButton.onclick =
+            leaveLobby;
     }
 }
 
